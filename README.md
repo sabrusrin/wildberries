@@ -1,7 +1,7 @@
 ## Solutions for Wildberries practical tasks 
 DAY|STATUS|SOLUTION|WIKI
 :---:|:------:|:----:|:----:
-1|🚧|[facade pattern](https://github.com/sabrusrin/wildberries_st5/tree/master/patterns/facade_pattern)|[link](https://en.wikipedia.org/wiki/Facade_pattern "Facade pattern")
+1|❓|[facade pattern](https://github.com/sabrusrin/wildberries_st5/tree/master/patterns/facade_pattern)|[link](https://en.wikipedia.org/wiki/Facade_pattern "Facade pattern")
 2|🚧|[builder pattern](https://github.com/sabrusrin/wildberries_st5/tree/master/patterns/builder_pattern)|[link](https://en.wikipedia.org/wiki/Builder_pattern "Builder pattern")
 3|🚧|[visitor pattern](https://github.com/sabrusrin/wildberries_st5/tree/master/patterns/visitor_pattern)|[link](https://en.wikipedia.org/wiki/Visitor_pattern "Visitor pattern")
 4|🚧|[command pattern](https://github.com/sabrusrin/wildberries_st5/tree/master/patterns/command_pattern)|[link](https://en.wikipedia.org/wiki/Command_pattern "Command pattern")
