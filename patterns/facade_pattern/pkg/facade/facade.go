@@ -1,5 +1,8 @@
 package facade
 
+/*
+** A structure to represent Facade
+ */
 type TrialPeriod struct	{
 	theory		*Theory
 	coursera	*Coursera
@@ -14,6 +17,7 @@ func InitTrial() *TrialPeriod	{
 	}
 }
 
+// Method for a TrialPeriod which returns a plan for trial period
 func (t *TrialPeriod) Plan() string	{
 	res := t.theory.Read() + t.coursera.Watch() + t.practice.Solve()
 	return res
@@ -22,6 +26,7 @@ func (t *TrialPeriod) Plan() string	{
 type Theory struct	{
 }
 
+// Method to work with Theory struct
 func (th *Theory) Read() string	{
 	return "Read books\n"
 }
@@ -29,6 +34,7 @@ func (th *Theory) Read() string	{
 type Coursera struct {
 }
 
+// Method to work with Coursera struct
 func (c *Coursera) Watch() string	{
 	return "Watch <<Разработка веб-сервисов на GO>> course on Coursera\n"
 }
@@ -36,6 +42,7 @@ func (c *Coursera) Watch() string	{
 type Practice struct {
 }
 
+// Method to work with Practice struct
 func (p *Practice) Solve() string	{
 	return "Do the practice tasks given by mentors\n"
 }
