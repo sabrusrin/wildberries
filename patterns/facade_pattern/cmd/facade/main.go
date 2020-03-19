@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	//"strings"
-	"../../pkg/facade"
+	"../../pkg/facade" //don't know how to import my package
 )
 
 func main()	{
@@ -14,7 +13,7 @@ func main()	{
 
 	out := wbTrial.Plan()
 
-	if (in != out)	{
-		fmt.Errorf("Expected: %s\nGot: %s\n", in, out)
+	if in != out	{
+		fmt.Printf("Expected: %s\nGot: %s\n", in, out)
 	}
 }
