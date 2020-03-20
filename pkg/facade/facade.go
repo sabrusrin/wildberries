@@ -1,27 +1,32 @@
 package facade
 
+import (
+	"WB/pkg/facade/mentor"
+	"WB/pkg/facade/practice"
+	"WB/pkg/facade/theory"
+)
+
+// Interface to work with trialPeriod type
 type Planner interface {
 	Plan() string
 }
 
-// A structure to represent Facade
 type trialPeriod struct	{
-	theory		*theory
-	coursera	*coursera
-	practice	*practice
+	theory		theory.Reader
+	mentor		mentor.Listener
+	practice	practice.Solver
 }
 
-// Method for a TrialPeriod which returns a plan for trial period
 func (t *trialPeriod) Plan() string	{
-	res := t.theory.read() + t.coursera.watch() + t.practice.solve()
+	res := t.theory.Read() + t.mentor.Listen() + t.practice.Solve()
 	return res
 }
 
-// Constructor
+// Constructor for trialPeriod
 func NewTrial() Planner {
 	return &trialPeriod{
-		theory:		&theory{},
-		coursera:	&coursera{},
-		practice:	&practice{},
+		theory:		theory.NewTheory(),
+		mentor:		mentor.NewMentor(),
+		practice:	practice.NewPractice(),
 	}
 }

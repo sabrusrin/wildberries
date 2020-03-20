@@ -7,7 +7,7 @@ import (
 
 func main()	{
 
-	in := "Read books\nWatch <<Разработка веб-сервисов на GO>> course on Coursera\n" +
+	in := "Read books\nListen what your mentor tells you\n" +
 				"Do the practice tasks given by mentors\n"
 
 	wbTrial := facade.NewTrial()
