@@ -1,16 +1,27 @@
 package facade
 
-/*
-** A structure to represent Facade
- */
-type TrialPeriod struct	{
-	Theory		*theory
-	Coursera	*coursera
-	Practice	*practice
+type Planner interface {
+	Plan() string
+}
+
+// A structure to represent Facade
+type trialPeriod struct	{
+	theory		*theory
+	coursera	*coursera
+	practice	*practice
 }
 
 // Method for a TrialPeriod which returns a plan for trial period
-func (t *TrialPeriod) Plan() string	{
-	res := t.Theory.read() + t.Coursera.watch() + t.Practice.solve()
+func (t *trialPeriod) Plan() string	{
+	res := t.theory.read() + t.coursera.watch() + t.practice.solve()
 	return res
+}
+
+// Constructor
+func NewTrial() Planner {
+	return &trialPeriod{
+		theory:		&theory{},
+		coursera:	&coursera{},
+		practice:	&practice{},
+	}
 }

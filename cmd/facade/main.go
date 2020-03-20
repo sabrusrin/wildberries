@@ -1,8 +1,8 @@
 package main
 
 import (
+	"WB/pkg/facade"
 	"fmt"
-	"../../pkg/facade"
 )
 
 func main()	{
@@ -10,7 +10,7 @@ func main()	{
 	in := "Read books\nWatch <<Разработка веб-сервисов на GO>> course on Coursera\n" +
 				"Do the practice tasks given by mentors\n"
 
-	wbTrial := facade.TrialPeriod{}
+	wbTrial := facade.NewTrial()
 
 	out := wbTrial.Plan()
 

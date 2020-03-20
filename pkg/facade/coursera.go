@@ -1,6 +1,5 @@
 package facade
 
-
 type coursera struct {
 }
 

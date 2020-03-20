@@ -1,6 +1,5 @@
 package facade
 
-
 type theory struct	{
 }
 
