@@ -22,7 +22,7 @@ func (t *trialPeriod) Plan() string	{
 	return res
 }
 
-// Constructor for trialPeriod
+// Constructor for trialPeriod interface
 func NewTrial() Planner {
 	return &trialPeriod{
 		theory:		theory.NewTheory(),
