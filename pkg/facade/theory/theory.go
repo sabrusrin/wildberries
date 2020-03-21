@@ -2,13 +2,15 @@ package theory
 
 // Interface to work with theory type
 type Reader interface {
-	Read() string
+	Read(string) string
 }
 type theory struct	{
+	book	string
 }
 
-func (t *theory) Read() string	{
-	return "Read books\n"
+func (t *theory) Read(s string) string	{
+	t.book = t.book + " " + s + ","
+	return "Read books:" + t.book + "\n"
 }
 
 // Constructor for theory type
