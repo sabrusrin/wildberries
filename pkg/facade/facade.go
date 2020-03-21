@@ -1,10 +1,16 @@
 package facade
 
-import (
-	"WB/pkg/facade/mentor"
-	"WB/pkg/facade/practice"
-	"WB/pkg/facade/theory"
-)
+type theory interface	{
+	Read(string)	string
+}
+
+type mentor interface	{
+	Listen()	string
+}
+
+type practice interface	{
+	Solve(string)	string
+}
 
 // Interface to work with trialPeriod type
 type Planner interface {
@@ -12,9 +18,9 @@ type Planner interface {
 }
 
 type trialPeriodPlan struct	{
-	theory		theory.Reader
-	mentor		mentor.Listener
-	practice	practice.Solver
+	theory		theory
+	mentor		mentor
+	practice	practice
 }
 
 func (t *trialPeriodPlan) Plan(s1 string, s2 string) string	{
@@ -23,10 +29,14 @@ func (t *trialPeriodPlan) Plan(s1 string, s2 string) string	{
 }
 
 // Constructor for trialPeriod interface
-func NewTrial() Planner {
+func NewTrial(
+	theory theory,
+	mentor mentor,
+	practice practice,
+	) Planner	{
 	return &trialPeriodPlan{
-		theory:		theory.NewTheory(),
-		mentor:		mentor.NewMentor(),
-		practice:	practice.NewPractice(),
+		theory:		theory,
+		mentor:		mentor,
+		practice:	practice,
 	}
 }

@@ -1,18 +1,14 @@
 package mentor
 
 // Interface to work with mentor type
-type Listener interface {
-	Listen() string
+type Mentor struct	{
 }
 
-type mentor struct	{
-}
-
-func (c *mentor) Listen() string	{
+func (c *Mentor) Listen() string	{
 	return "Listen what your mentor tells you\n"
 }
 
 // Constructor for mentor type
-func NewMentor() Listener	{
-	return &mentor{}
+func NewMentor() Mentor	{
+	return Mentor{}
 }
