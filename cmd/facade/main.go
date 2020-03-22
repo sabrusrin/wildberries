@@ -1,11 +1,11 @@
 package main
 
 import (
-	"WB/pkg/facade"
-	"WB/pkg/mentor"
-	"WB/pkg/models"
-	"WB/pkg/practice"
-	"WB/pkg/theory"
+	"pkg/facade"
+	"pkg/mentor"
+	"pkg/models"
+	"pkg/practice"
+	"pkg/theory"
 	"fmt"
 )
 
@@ -17,7 +17,6 @@ func main()	{
 	m := mentor.NewMentor(models.MentorHeader)
 	p := practice.NewPractice(models.PracticeHeader)
 	wbTrial := facade.NewPlanner(&t, &m, &p)
-
 	// Adding a new book and task to the trialPeriodPlan and comparing with expected Plan
 	out := wbTrial.Plan("Go101", "Implement facade pattern")
 	if in != out	{
@@ -25,7 +24,6 @@ func main()	{
 	} else	{
 		fmt.Printf("%sYou are doing fine!\n", out)
 	}
-
 	// Appending the task list with new books and tasks
 	out = wbTrial.Plan("Concurrency in go", "Implement builder pattern")
 	fmt.Printf("\n%s", out)
