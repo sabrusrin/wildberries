@@ -9,8 +9,8 @@ import (
 )
 
 func main()	{
-	in := "Read books: Go101,\n" + "Listen what your mentor tells you\n" +
-			"Do the practice tasks given by mentors: Implement facade pattern,\n"
+	in := "Read books: Go101\n" + "Listen what your mentor tells you\n" +
+			"Do the practice tasks given by mentors: Implement facade pattern\n"
 
 	t := theory.NewTheory()
 	m := mentor.NewMentor()
@@ -25,7 +25,7 @@ func main()	{
 		fmt.Printf("%sYou are doing fine!\n", out)
 	}
 
-	// Adding new books and tasks to the trialPeriodPlan
+	// Appending the task list with new books and tasks
 	out = wbTrial.Plan("Concurrency in go", "Implement builder pattern")
 	fmt.Printf("\n%s", out)
 }

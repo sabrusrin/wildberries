@@ -7,7 +7,13 @@ type Theory struct	{
 }
 
 func (t *Theory) Read(s string) string	{
-	t.book = t.book + " " + s + ","
+	if len(s) != 0	{
+		if len(t.book) == 0	{
+			t.book = t.book + " " + s
+		} else	{
+			t.book = t.book + ", " + s
+		}
+	}
 	return "Read books:" + t.book + "\n"
 }
 

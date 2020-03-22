@@ -1,12 +1,18 @@
 package practice
 
 // Interface to work with practice type
-type Practice struct {
+type Practice struct	{
 	task	string
 }
 
 func (p *Practice) Solve(s string) string	{
-	p.task = p.task + " " + s + ","
+	if len(s) != 0	{
+		if len(p.task) == 0	{
+			p.task = p.task + " " + s
+		} else	{
+			p.task = p.task + ", " + s
+		}
+	}
 	return "Do the practice tasks given by mentors:" + p.task + "\n"
 }
 
