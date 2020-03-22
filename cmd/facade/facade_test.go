@@ -2,17 +2,18 @@ package main
 
 import (
 	"WB/pkg/facade"
-	"WB/pkg/facade/mentor"
-	"WB/pkg/facade/practice"
-	"WB/pkg/facade/theory"
+	"WB/pkg/mentor"
+	"WB/pkg/models"
+	"WB/pkg/practice"
+	"WB/pkg/theory"
 	"testing"
 )
 
 func TestOk(t *testing.T)	{
-	th := theory.NewTheory()
-	m := mentor.NewMentor()
-	p := practice.NewPractice()
-	wbTrial := facade.NewTrial(&th, &m, &p)
+	th := theory.NewTheory(models.TheoryHeader)
+	m := mentor.NewMentor(models.MentorHeader)
+	p := practice.NewPractice(models.PracticeHeader)
+	wbTrial := facade.NewPlanner(&th, &m, &p)
 
 	//testing for empty string argument, adding a task to the task list and appending task list
 	okResult := "Read books:\n" + "Listen what your mentor tells you\n" +

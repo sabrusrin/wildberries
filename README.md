@@ -9,19 +9,3 @@
 #### Решение  
 В моём примере реализован интерфейс Planner, через который можно составить план на испытательный срок.
 
-##### workspace structure
-```.  
- 
-├── cmd  
-│   └── facade 
-│       └── main.go  
-└── pkg  
-    └── facade  
-        ├── facade.go  
-        ├── mentor  
-        │   └── mentor.go  
-        ├── practice  
-        │   └── practice.go  
-        └── theory  
-            └── theory.go  
- ```  

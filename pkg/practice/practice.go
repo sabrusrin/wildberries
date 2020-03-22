@@ -1,10 +1,11 @@
 package practice
 
-// Interface to work with practice type
 type Practice struct	{
 	task	string
+	practiceHeader string
 }
 
+// Appends the task list and returns the plan for practice
 func (p *Practice) Solve(s string) string	{
 	if len(s) != 0	{
 		if len(p.task) == 0	{
@@ -13,10 +14,12 @@ func (p *Practice) Solve(s string) string	{
 			p.task = p.task + ", " + s
 		}
 	}
-	return "Do the practice tasks given by mentors:" + p.task + "\n"
+	return p.practiceHeader + p.task + "\n"
 }
 
 // Constructor for practice type
-func NewPractice() Practice	{
-	return Practice{}
+func NewPractice(s string) Practice	{
+	return Practice{
+		practiceHeader: s,
+	}
 }

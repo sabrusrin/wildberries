@@ -2,9 +2,10 @@ package main
 
 import (
 	"WB/pkg/facade"
-	"WB/pkg/facade/mentor"
-	"WB/pkg/facade/practice"
-	"WB/pkg/facade/theory"
+	"WB/pkg/mentor"
+	"WB/pkg/models"
+	"WB/pkg/practice"
+	"WB/pkg/theory"
 	"fmt"
 )
 
@@ -12,10 +13,10 @@ func main()	{
 	in := "Read books: Go101\n" + "Listen what your mentor tells you\n" +
 			"Do the practice tasks given by mentors: Implement facade pattern\n"
 
-	t := theory.NewTheory()
-	m := mentor.NewMentor()
-	p := practice.NewPractice()
-	wbTrial := facade.NewTrial(&t, &m, &p)
+	t := theory.NewTheory(models.TheoryHeader)
+	m := mentor.NewMentor(models.MentorHeader)
+	p := practice.NewPractice(models.PracticeHeader)
+	wbTrial := facade.NewPlanner(&t, &m, &p)
 
 	// Adding a new book and task to the trialPeriodPlan and comparing with expected Plan
 	out := wbTrial.Plan("Go101", "Implement facade pattern")
