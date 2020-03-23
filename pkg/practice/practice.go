@@ -17,7 +17,7 @@ func (p *Practice) Solve(s string) string	{
 	return p.practiceHeader + p.task + "\n"
 }
 
-// Constructor for practice type
+// NewPractice ...
 func NewPractice(s string) Practice	{
 	return Practice{
 		practiceHeader: s,

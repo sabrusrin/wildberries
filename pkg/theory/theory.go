@@ -17,7 +17,7 @@ func (t *Theory) Read(s string) string	{
 	return t.theoryHeader + t.book + "\n"
 }
 
-// Constructor for theory type
+// NewTheory ...
 func NewTheory(s string) Theory	{
 	return Theory{
 		theoryHeader: s,

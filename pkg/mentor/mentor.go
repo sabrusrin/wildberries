@@ -9,7 +9,7 @@ func (m *Mentor) Listen() string	{
 	return m.mentorHeader
 }
 
-// Constructor for mentor type
+// NewMentor ...
 func NewMentor(s string) Mentor	{
 	return Mentor{
 		mentorHeader: s,
