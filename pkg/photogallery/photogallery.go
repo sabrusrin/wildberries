@@ -23,7 +23,7 @@ func (s *site) StartNewSite()	{
 	var buffer string
 	fmt.Print("Enter your site title: ")
 	fmt.Scan(&buffer)
-	s.siteInfo.Append("<head>\n<title>" + buffer + "</title>\n</head>\n")
+	s.siteInfo.Append("<!DOCTYPE html>\n<html>\n<head>\n<title>" + buffer + "</title>\n</head>\n")
 }
 
 // BuildSiteBody will ask for certain parameters and append them to the site complex object

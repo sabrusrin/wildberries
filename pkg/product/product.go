@@ -22,9 +22,9 @@ func (s *site) Return()	 string {
 }
 
 // NewSite ...
-func NewSite(s string, s1 string) Site	{
+func NewSite(s string) Site	{
 	return &site	{
-		site:		s1,
+		site:		"",
 		siteType:	s,
 	}
 }

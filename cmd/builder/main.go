@@ -9,8 +9,6 @@ import (
 
 	"pkg/product"
 
-	"pkg/models"
-
 	"os"
 	"fmt"
 )
@@ -28,7 +26,7 @@ func main()	{
 
 	fmt.Print("What type of site you want to build(BusinessCard or Photogallery): ")
 	fmt.Scanf("%s", &buffer)
-	site := product.NewSite(buffer, models.HtmlDocStart)
+	site := product.NewSite(buffer)
 	var siteBuilder businessCard.BusinessCardSite
 	if buffer == "BusinessCard"	{
 		siteBuilder = businessCard.NewBusinessCardSite(site)
