@@ -1,8 +1,9 @@
 package main
 
 import (
-	"pkg/leetcode_twosum"
 	"fmt"
+
+	"github.com/sabrusrin/wildberries_st5/pkg/leetcode_twosum"
 )
 
 func main()	{

@@ -1,6 +1,6 @@
 package leetcode_twosum
 
-func TwoSum(nums []int, target int) []int	{
+func TwoSum(nums []int, target int) []int {
 	m := make(map[int]int)
 	var i, num, num2 int
 	pair := []int{}
