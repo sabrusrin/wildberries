@@ -18,9 +18,9 @@ type Planner interface {
 }
 
 type trialPeriodPlan struct {
-	theory		theory
-	mentor		mentor
-	practice	practice
+	theory   theory
+	mentor   mentor
+	practice practice
 }
 
 // Plan method returns a plan for trialPeriod
@@ -36,8 +36,8 @@ func NewPlanner(
 	practice practice,
 	) Planner {
 	return &trialPeriodPlan{
-		theory:		theory,
-		mentor:		mentor,
-		practice:	practice,
+		theory:   theory,
+		mentor:   mentor,
+		practice: practice,
 	}
 }

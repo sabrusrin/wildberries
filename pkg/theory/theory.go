@@ -6,8 +6,8 @@ type Theory interface {
 }
 
 type theory struct {
-	book			string
-	theoryHeader	string
+	book         string
+	theoryHeader string
 }
 
 // Appends the book list and returns the plan for theory
