@@ -9,7 +9,7 @@ type mentor struct {
 }
 
 // Returns the plan for theory
-func (m *Mentor) Listen() string {
+func (m *mentor) Listen() string {
 	return m.mentorHeader
 }
 

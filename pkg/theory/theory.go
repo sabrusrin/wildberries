@@ -11,7 +11,7 @@ type theory struct {
 }
 
 // Appends the book list and returns the plan for theory
-func (t *Theory) Read(s string) string {
+func (t *theory) Read(s string) string {
 	if len(s) != 0 {
 		if len(t.book) == 0 {
 			t.book = t.book + " " + s

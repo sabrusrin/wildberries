@@ -11,7 +11,7 @@ type practice struct {
 }
 
 // Appends the task list and returns the plan for practice
-func (p *Practice) Solve(s string) string {
+func (p *practice) Solve(s string) string {
 	if len(s) != 0 {
 		if len(p.task) == 0 {
 			p.task = p.task + " " + s
