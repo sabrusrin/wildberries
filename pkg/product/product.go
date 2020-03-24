@@ -7,24 +7,24 @@ type Site interface {
 }
 
 type site struct {
-	site		string
-	siteType	string
+	site string
+	siteType string
 }
 
 // Append appends to a site
-func (s *site) Append(str string)	{
+func (s *site) Append(str string) {
 	s.site += str
 }
 
 // Return returns a site
-func (s *site) Return()	 string {
+func (s *site) Return() string {
 	return (s.site)
 }
 
 // NewSite ...
-func NewSite(s string) Site	{
-	return &site	{
-		site:		"",
-		siteType:	s,
+func NewSite(s string) Site {
+	return &site {
+		site: "",
+		siteType: s,
 	}
 }

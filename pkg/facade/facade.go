@@ -1,10 +1,5 @@
 package facade
 
-// Interface to work with trialPeriod type
-type Planner interface {
-	Plan(string, string) string
-}
-
 type theory interface	{
 	Read(string)	string
 }
@@ -15,6 +10,11 @@ type mentor interface	{
 
 type practice interface	{
 	Solve(string)	string
+}
+
+// Interface to work with trialPeriod type
+type Planner interface {
+	Plan(string, string) string
 }
 
 type trialPeriodPlan struct	{

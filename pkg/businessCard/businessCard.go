@@ -2,6 +2,11 @@ package businessCard
 
 import "fmt"
 
+type siteInfo interface {
+	Append(string)
+	Return() string
+}
+
 // Interface to work with site, also a concreteBuilder
 type BusinessCardSite interface {
 	StartNewSite()
@@ -9,17 +14,12 @@ type BusinessCardSite interface {
 	ReturnSite() string
 }
 
-type siteInfo interface {
-	Append(string)
-	Return() string
-}
-
 type site struct {
 	siteInfo siteInfo
 }
 
 // StartNewSite asks for a site title and appends it to the site complex object
-func (s *site) StartNewSite()	{
+func (s *site) StartNewSite() {
 	var buffer string
 	fmt.Print("Enter your site title: ")
 	fmt.Scan(&buffer)
@@ -27,7 +27,7 @@ func (s *site) StartNewSite()	{
 }
 
 // BuildSiteBody will ask for certain parameters and append them to the site complex object
-func (s *site) BuildSiteBody()	{
+func (s *site) BuildSiteBody() {
 	var buffer string
 	fmt.Print("Enter your Name Surname/Company name: ")
 	fmt.Scan(&buffer)
@@ -50,7 +50,7 @@ func (s *site) ReturnSite() string {
 }
 
 // NewBusinessCardSite
-func NewBusinessCardSite(s siteInfo) BusinessCardSite	{
+func NewBusinessCardSite(s siteInfo) BusinessCardSite {
 	return &site{
 		siteInfo: s,
 	}

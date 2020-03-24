@@ -1,25 +1,22 @@
 package main
 
 import (
-	"pkg/builder"
-
-	"pkg/businessCard"
-
-	"pkg/photogallery"
-
-	"pkg/product"
-
 	"os"
 	"fmt"
+
+	"github.com/sabrusrin/wildberries_st5/pkg/builder"
+	"github.com/sabrusrin/wildberries_st5/pkg/businessCard"
+	"github.com/sabrusrin/wildberries_st5/pkg/photogallery"
+	"github.com/sabrusrin/wildberries_st5/pkg/product"
 )
 
-func main()	{
+func main() {
 	var buffer string
 	fmt.Print("Enter name for new file: ")
 	fmt.Scanf("%s", &buffer)
 	fileName := buffer + ".html"
 	f, err := os.Create(fileName)
-	if err != nil	{
+	if err != nil {
 		panic(err)
 	}
 	defer f.Close()
@@ -28,9 +25,9 @@ func main()	{
 	fmt.Scanf("%s", &buffer)
 	site := product.NewSite(buffer)
 	var siteBuilder businessCard.BusinessCardSite
-	if buffer == "BusinessCard"	{
+	if buffer == "BusinessCard" {
 		siteBuilder = businessCard.NewBusinessCardSite(site)
-	} else if buffer == "Photogallery"	{
+	} else if buffer == "Photogallery" {
 		siteBuilder = photogallery.NewPhotogallerySite(site)
 	} else {
 		fmt.Errorf("Unknown type of site: %s", buffer)
