@@ -7,7 +7,7 @@ type Site interface {
 }
 
 type site struct {
-	site string
+	site     string
 	siteType string
 }
 
@@ -24,7 +24,7 @@ func (s *site) Return() string {
 // NewSite ...
 func NewSite(s string) Site {
 	return &site {
-		site: "",
+		site:     "",
 		siteType: s,
 	}
 }
