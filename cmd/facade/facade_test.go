@@ -1,19 +1,20 @@
 package main
 
 import (
-	"pkg/facade"
-	"pkg/mentor"
-	"pkg/models"
-	"pkg/practice"
-	"pkg/theory"
 	"testing"
+
+	"github.com/sabrusrin/wildberries_st5/pkg/facade"
+	"github.com/sabrusrin/wildberries_st5/pkg/mentor"
+	"github.com/sabrusrin/wildberries_st5/pkg/models"
+	"github.com/sabrusrin/wildberries_st5/pkg/practice"
+	"github.com/sabrusrin/wildberries_st5/pkg/theory"
 )
 
 func TestOk(t *testing.T)	{
 	th := theory.NewTheory(models.TheoryHeader)
 	m := mentor.NewMentor(models.MentorHeader)
 	p := practice.NewPractice(models.PracticeHeader)
-	wbTrial := facade.NewPlanner(&th, &m, &p)
+	wbTrial := facade.NewPlanner(th, m, p)
 	// testing for empty string argument, adding a task to the task list and appending task list
 	okResult := models.TheoryHeader + models.MentorHeader + models.PracticeHeader
 	out := wbTrial.Plan("", "")

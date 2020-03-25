@@ -1,17 +1,21 @@
 package mentor
 
-type Mentor struct	{
+// Mentor ...
+type Mentor interface {
+	Listen() string
+}
+type mentor struct {
 	mentorHeader string
 }
 
 // Returns the plan for theory
-func (m *Mentor) Listen() string	{
+func (m *mentor) Listen() string {
 	return m.mentorHeader
 }
 
 // NewMentor ...
-func NewMentor(s string) Mentor	{
-	return Mentor{
+func NewMentor(s string) Mentor {
+	return &mentor{
 		mentorHeader: s,
 	}
 }
