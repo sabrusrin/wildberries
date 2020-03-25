@@ -1,8 +1,8 @@
 package main
 
 import (
-	"os"
 	"fmt"
+	"os"
 
 	"github.com/sabrusrin/wildberries_st5/pkg/builder"
 	"github.com/sabrusrin/wildberries_st5/pkg/businessCard"
@@ -13,7 +13,7 @@ import (
 func main() {
 	var buffer string
 	fmt.Print("Enter name for new file: ")
-	fmt.Scanf("%s", &buffer)
+	fmt.Scan(&buffer)
 	fileName := buffer + ".html"
 	f, err := os.Create(fileName)
 	if err != nil {
@@ -22,7 +22,7 @@ func main() {
 	defer f.Close()
 
 	fmt.Print("What type of site you want to build(BusinessCard or Photogallery): ")
-	fmt.Scanf("%s", &buffer)
+	fmt.Scan(&buffer)
 	site := product.NewSite(buffer)
 	var siteBuilder businessCard.BusinessCardSite
 	if buffer == "BusinessCard" {

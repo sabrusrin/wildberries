@@ -41,7 +41,7 @@ func (s *site) BuildSiteBody() {
 	fmt.Print("Enter your phone number: ")
 	fmt.Scan(&buffer)
 	s.siteInfo.Append("<p>Phone number: " + buffer + "\n")
-	s.siteInfo.Append("</center>\n<hr>\n</body>\n</html>")
+	s.siteInfo.Append("</center>\n<hr>\n</body>\n</html>\n")
 }
 
 // ReturnSite returns a site product

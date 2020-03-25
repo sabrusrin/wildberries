@@ -41,7 +41,7 @@ func (s *site) BuildSiteBody() {
 		s.siteInfo.Append("<img src=\"" + buffer + "\"align=\"bottom\">\n")
 		num--
 	}
-	s.siteInfo.Append("</center>\n<hr>\n</body>\n</html>")
+	s.siteInfo.Append("</center>\n<hr>\n</body>\n</html>\n")
 }
 
 // ReturnSite returns a site product
