@@ -1,0 +1,17 @@
+@startuml
+
+package "Director" {
+siteBuilder - [StartNewSite()]
+siteBuilder - [BuildSiteBody]
+siteBuilder - [ReturnSite]
+[director]
+}
+
+package "Other Groups" {
+interface Interf3
+FTP - [Second Component]
+
+[First Component] --> FTP
+}
+
+@enduml
