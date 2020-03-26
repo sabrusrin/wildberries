@@ -1,6 +1,6 @@
 package theory
 
-// TheoryList ...
+// BookList ...
 type BookList interface {
 	AppendBookList(string) string
 }
@@ -10,7 +10,7 @@ type bookList struct {
 	theoryHeader string
 }
 
-// AppendReadList appends the book list and returns the plan for theory
+// AppendBookList appends the book list and returns the plan for theory
 func (t *bookList) AppendBookList(s string) string {
 	var iter int
 	var bookList, buffer string
@@ -27,7 +27,7 @@ func (t *bookList) AppendBookList(s string) string {
 	return t.theoryHeader + bookList + "\n"
 }
 
-// NewTheory ...
+// NewBookList ...
 func NewBookList(s string) BookList {
 	return &bookList{
 		theoryHeader: s,

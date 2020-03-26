@@ -10,7 +10,7 @@ type taskList struct {
 	practiceHeader string
 }
 
-// Appends the task list and returns the plan for practice
+// AppendTaskList Appends the task list and returns the plan for practice
 func (p *taskList) AppendTaskList(s string) string {
 	var iter int
 	var taskList, buffer string
@@ -27,7 +27,7 @@ func (p *taskList) AppendTaskList(s string) string {
 	return p.practiceHeader + taskList + "\n"
 }
 
-// NewPracticeList ...
+// NewTaskList ...
 func NewTaskList(s string) TaskList {
 	return &taskList{
 		practiceHeader: s,
