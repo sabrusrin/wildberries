@@ -1,0 +1,14 @@
+@startuml
+
+actor Director
+boundary siteBuilder
+control BusinessCardSite
+control PhotogallerySite
+entity Site
+Director -> siteBuilder
+siteBuilder -> BusinessCardSite
+siteBuilder -> PhotogallerySite
+BusinessCardSite -> Site
+PhotogallerySite ->Site
+
+@enduml
