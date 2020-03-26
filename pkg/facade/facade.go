@@ -1,40 +1,40 @@
 package facade
 
-type theory interface {
-	Read(string) string
+type bookList interface {
+	AppendBookList(string) string
 }
 
 type mentor interface {
 	Listen() string
 }
 
-type practice interface {
-	Solve(string) string
+type taskList interface {
+	AppendTaskList(string) string
 }
 
-// Interface to work with trialPeriod type
-type Planner interface {
+// TrialPeriodPlanner Interface to work with trialPeriod type
+type TrialPeriodPlanner interface {
 	Plan(string, string) string
 }
 
 type trialPeriodPlan struct {
-	theory   theory
+	theory   bookList
 	mentor   mentor
-	practice practice
+	practice taskList
 }
 
 // Plan method returns a plan for trialPeriod
 func (t *trialPeriodPlan) Plan(s1 string, s2 string) string {
-	res := t.theory.Read(s1) + t.mentor.Listen() + t.practice.Solve(s2)
+	res := t.theory.AppendBookList(s1) + t.mentor.Listen() + t.practice.AppendTaskList(s2)
 	return res
 }
 
 // NewPlanner for trialPeriod interface
 func NewPlanner(
-	theory theory,
+	theory bookList,
 	mentor mentor,
-	practice practice,
-	) Planner {
+	practice taskList,
+	) TrialPeriodPlanner {
 	return &trialPeriodPlan{
 		theory:   theory,
 		mentor:   mentor,

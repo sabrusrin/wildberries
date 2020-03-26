@@ -1,30 +1,35 @@
 package theory
 
-// Theory ...
-type Theory interface {
-	Read(string) string
+// TheoryList ...
+type BookList interface {
+	AppendBookList(string) string
 }
 
-type theory struct {
-	book         string
+type bookList struct {
+	book         []string
 	theoryHeader string
 }
 
-// Appends the book list and returns the plan for theory
-func (t *theory) Read(s string) string {
+// AppendReadList appends the book list and returns the plan for theory
+func (t *bookList) AppendBookList(s string) string {
+	var iter int
+	var bookList, buffer string
 	if len(s) != 0 {
-		if len(t.book) == 0 {
-			t.book = t.book + " " + s
+		t.book = append(t.book, s)
+	}
+	for iter, buffer = range t.book {
+		if iter == 0 {
+			bookList += " " + buffer
 		} else {
-			t.book = t.book + ", " + s
+			bookList += ", " + buffer
 		}
 	}
-	return t.theoryHeader + t.book + "\n"
+	return t.theoryHeader + bookList + "\n"
 }
 
 // NewTheory ...
-func NewTheory(s string) Theory {
-	return &theory{
+func NewBookList(s string) BookList {
+	return &bookList{
 		theoryHeader: s,
 	}
 }
