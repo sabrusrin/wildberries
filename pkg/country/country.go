@@ -1,8 +1,8 @@
 package country
 
-
 type visitor interface {
 }
+
 // Place provides an interface for place that the visitor should visit.
 type place interface {
 	Accept(v visitor) []string
