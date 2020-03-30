@@ -1,7 +1,14 @@
 @startuml
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+Country -> City:accept(visior)
+activate City #FFBBBB
+Country -> Village:accept(vistor)
+activate Village #FFBBBB
+City -> Visitor:VisitCity
+activate Visitor
+Village -> Visitor:VisitVillage
+Visitor -> City:SightsToSee()
+activate City #DarkSalmon
+Visitor -> Village:VillageToDo()
+activate Village  #DarkSalmon
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
 @enduml

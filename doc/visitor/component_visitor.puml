@@ -1,14 +1,29 @@
 @startuml
 
-package "City" {
-HTTP - [First Component]
-[Another Component]
+package "Country" {
+places - [Accept(visitor)]
+[Elements]
 }
 
-package "Other Groups" {
-FTP - [Second Component]
+package "City" {
+city - [Accept]
+[Accept(visitor)] --> [Accept]:visitor
+[SightsToSee()]
+}
 
-[First Component] --> FTP
+package "Village" {
+village - [Accept(v)]
+[Accept(visitor)] --> [Accept(v)]:visitor
+[VillageToDo()]
+}
+
+package "Visitor" {
+[Accept] --> Visitor
+[Accept(v)] --> Visitor
+[VisitCity] --> [SightsToSee()]
+[VisitVillage] --> [VillageToDo()]
+people -- [VisitCity]
+people --[VisitVillage]
 }
 
 @enduml

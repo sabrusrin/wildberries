@@ -15,4 +15,5 @@ func main() {
 	russia.Add(moscow)
 	tourist := visitor.NewVisitor()
 	sightsToSee := russia.Accept(tourist)
+	fmt.Printf("%v", sightsToSee)
 }

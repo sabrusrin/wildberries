@@ -5,12 +5,12 @@ type visitor interface {
 }
 // Place provides an interface for place that the visitor should visit.
 type place interface {
-	Accept(v visitor) string
+	Accept(v visitor) []string
 }
 
 type Country interface {
 	Add(p place)
-	Accept(v visitor) string
+	Accept(v visitor) [][]string
 }
 
 // City implements a collection of places to visit.
@@ -25,10 +25,10 @@ func (c *country) Add(p place) {
 }
 
 // Accept implements a visit to all places in the city.
-func (c *country) Accept(v visitor) []string {
-	var result []string
+func (c *country) Accept(v visitor) [][]string {
+	var result [][]string
 	for _, p := range c.places {
-		result += p.Accept(v)
+		result = append(result, p.Accept(v))
 	}
 	return result
 }
