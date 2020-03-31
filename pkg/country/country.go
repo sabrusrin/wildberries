@@ -1,7 +1,7 @@
 package country
 
 import (
-	"pkg/city"
+	"github.com/sabrusrin/wildberries_st5/pkg/city"
 )
 
 type (
