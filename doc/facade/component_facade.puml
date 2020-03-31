@@ -1,6 +1,10 @@
 @startuml
 
+package "Client"{
+}
+
 package "TrialPeriodPlanner" {
+Client - TrialPeriodPlanner
 trialPeriod - [Plan]
 [trialPeriodPlan]
 }
