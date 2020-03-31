@@ -23,13 +23,17 @@ func (c *city) Accept() string {
 // SightsToSee returns a list of sights to see in the city
 func (c *city) SightsToSee() string {
 	var toSee string
-	toSee = "In " + c.cityName + " you should check following sights: "
-	for i, sight := range c.sightsList {
-		if i+1 < len(c.sightsList) {
-			toSee += sight + ", "
-		} else {
-			toSee += sight + "\n"
+	if len(c.sightsList) != 0 {
+		toSee = "In " + c.cityName + " you should check following sights: "
+		for i, sight := range c.sightsList {
+			if i+1 < len(c.sightsList) {
+				toSee += sight + ", "
+			} else {
+				toSee += sight + "\n"
+			}
 		}
+	} else {
+		toSee = "Error. Sight list for city " + c.cityName + " is Empty"
 	}
 	return toSee
 }
