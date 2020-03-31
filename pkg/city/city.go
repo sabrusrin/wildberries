@@ -1,56 +1,48 @@
 package city
 
-import "fmt"
-
 type visitor interface {
-	VisitCity(*city) []string
+	VisitCity(City) string
 }
 
+// City ...
 type City interface {
-	Accept(v visitor) []string
-//	Return() (map[string]bool, string)
+	Accept() string
+	SightsToSee() string
 }
 
 type city struct {
 	cityName   string
-	sightsList map[string]bool
+	sightsList []string
+	visitor
 }
 
-func (c *city) Accept(v visitor) []string {
-	return v.VisitCity(c)
+func (c *city) Accept() string {
+	return c.visitor.VisitCity(c)
 }
 
-func (c *city) Return() (map[string]bool, string) {
-	return c.sightsList, c.cityName
-}
-
-func (c *city) SightsToSee() []string {
-	var sight string
-	var toSee []string
-	var err error
-	fmt.Printf("What sights you've already seen in %s?(press 0 when you'll recap)\n", c.cityName)
-	for _, err = fmt.Scan(&sight); sight != "0" && err == nil; {
-		if _, ok := c.sightsList[sight]; ok {
-			c.sightsList[sight] = true
-		}
-	}
-	if err != nil {
-		panic(err)
-	}
-	for sight, status := range c.sightsList {
-		if status == false {
-			toSee = append(toSee, sight)
+// SightsToSee returns a list of sights to see in the city
+func (c *city) SightsToSee() string {
+	var toSee string
+	toSee = "In " + c.cityName + " you should check following sights: "
+	for i, sight := range c.sightsList {
+		if i+1 < len(c.sightsList) {
+			toSee += sight + ", "
+		} else {
+			toSee += sight + "\n"
 		}
 	}
 	return toSee
 }
 
+// NewCity ...
 func NewCity(
 	name string,
-	sights map[string]bool,
+	sights []string,
+	visitor visitor,
 ) City {
 	return &city{
 		cityName:   name,
 		sightsList: sights,
+		visitor:    visitor,
 	}
 }

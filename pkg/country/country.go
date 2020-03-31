@@ -1,40 +1,43 @@
 package country
 
-type visitor interface {
-}
+import (
+	"pkg/city"
+)
 
-// Place provides an interface for place that the visitor should visit.
-type place interface {
-	Accept(v visitor) []string
-}
+type (
+	cities = []city.City
+)
 
+// Country ...
 type Country interface {
-	Add(p place)
-	Accept(v visitor) [][]string
+	Accept() []string
 }
 
-// City implements a collection of places to visit.
 type country struct {
 	countryName string
-	places      []place
+	cities
 }
 
-// Add appends Place to the collection.
-func (c *country) Add(p place) {
-	c.places = append(c.places, p)
-}
-
-// Accept implements a visit to all places in the city.
-func (c *country) Accept(v visitor) [][]string {
-	var result [][]string
-	for _, p := range c.places {
-		result = append(result, p.Accept(v))
+// Accept implements a visit to all cities in the .
+func (c *country) Accept() []string {
+	var result []string
+	for _, p := range c.cities {
+		result = append(result, p.Accept())
 	}
 	return result
 }
 
-func NewCountry(name string) Country {
+// NewCountry ...
+func NewCountry(
+	name string,
+	c ...city.City,
+) Country {
+	var allCities cities
+	for _, c := range c {
+		allCities = append(allCities, c)
+	}
 	return &country{
 		countryName: name,
+		cities:      allCities,
 	}
 }

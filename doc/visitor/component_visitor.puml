@@ -1,29 +1,25 @@
 @startuml
 
+package "Client" {
+}
+
 package "Country" {
-places - [Accept(visitor)]
-[Elements]
+Client -- Country
+places - [Accept()]
+[cities]
 }
 
 package "City" {
 city - [Accept]
-[Accept(visitor)] --> [Accept]:visitor
+[Accept()] --> [Accept]
 [SightsToSee()]
 }
 
-package "Village" {
-village - [Accept(v)]
-[Accept(visitor)] --> [Accept(v)]:visitor
-[VillageToDo()]
-}
-
 package "Visitor" {
-[Accept] --> Visitor
-[Accept(v)] --> Visitor
+Client -- Visitor
+[Accept] --> Visitor:visitor
 [VisitCity] --> [SightsToSee()]
-[VisitVillage] --> [VillageToDo()]
 people -- [VisitCity]
-people --[VisitVillage]
 }
 
 @enduml
