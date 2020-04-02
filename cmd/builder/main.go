@@ -12,29 +12,35 @@ import (
 
 func main() {
 	var buffer string
+	var err error
 	fmt.Print("Enter name for new file: ")
-	fmt.Scan(&buffer)
-	fileName := buffer + ".html"
-	f, err := os.Create(fileName)
+	if _, err = fmt.Scan(&buffer); err == nil {
+		fileName := buffer + ".html"
+		f, err := os.Create(fileName)
+		if err == nil {
+			defer f.Close()
+			fmt.Print("What type of site you want to build(BusinessCard or Photogallery): ")
+			if _, err = fmt.Scan(&buffer); err == nil {
+				site := product.NewSite(buffer)
+				var siteBuilder businessCard.BusinessCardSite
+				if buffer == "BusinessCard" {
+					siteBuilder = businessCard.NewBusinessCardSite(site)
+				} else if buffer == "Photogallery" {
+					siteBuilder = photogallery.NewPhotogallerySite(site)
+				} else {
+					err = fmt.Errorf("unknown type of site: %s", buffer)
+					panic(err)
+				}
+				director := builder.NewDirector(siteBuilder)
+				if out, err := director.BuildSite(); err == nil {
+					if _, err = f.WriteString(out); err != nil {
+						fmt.Printf("Your site written to: %s", fileName)
+					}
+				}
+			}
+		}
+	}
 	if err != nil {
 		panic(err)
 	}
-	defer f.Close()
-
-	fmt.Print("What type of site you want to build(BusinessCard or Photogallery): ")
-	fmt.Scan(&buffer)
-	site := product.NewSite(buffer)
-	var siteBuilder businessCard.BusinessCardSite
-	if buffer == "BusinessCard" {
-		siteBuilder = businessCard.NewBusinessCardSite(site)
-	} else if buffer == "Photogallery" {
-		siteBuilder = photogallery.NewPhotogallerySite(site)
-	} else {
-		fmt.Errorf("Unknown type of site: %s", buffer)
-	}
-	director := builder.NewDirector(siteBuilder)
-	out := director.BuildSite()
-
-	f.WriteString(out)
-	fmt.Printf("Your site written to: %s", fileName)
 }

@@ -18,12 +18,12 @@ func (s *site) Append(str string) {
 
 // Return returns a site
 func (s *site) Return() string {
-	return (s.site)
+	return s.site
 }
 
 // NewSite ...
 func NewSite(s string) Site {
-	return &site {
+	return &site{
 		site:     "",
 		siteType: s,
 	}

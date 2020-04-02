@@ -42,20 +42,37 @@ var TestOkPhotogallery = `<!DOCTYPE html>
 </html>
 `
 
+var testFail = `no site was created! check function call order`
+
 func TestOk(t *testing.T) {
 	site := product.NewSite("BusinessCard")
 	siteBuilder := businessCard.NewBusinessCardSite(site)
 	director := builder.NewDirector(siteBuilder)
-	out := director.BuildSite()
-	if out != TestOkBusinessCard {
+	out, err := director.BuildSite()
+	if out != TestOkBusinessCard && err == nil {
 		t.Errorf("Test for BusinessCard site failed!\nExpected:\n%v", TestOkBusinessCard)
 	}
 
 	site = product.NewSite("Photogallery")
 	siteBuilder = photogallery.NewPhotogallerySite(site)
 	director = builder.NewDirector(siteBuilder)
-	out = director.BuildSite()
-	if out != TestOkPhotogallery {
+	out, err = director.BuildSite()
+	if out != TestOkPhotogallery && err == nil {
 		t.Errorf("Test for Photogallery site failed!\nExpected:\n%v", TestOkPhotogallery)
+	}
+}
+
+func TestForError(t *testing.T) {
+	site := product.NewSite("BusinessCard")
+	siteBuilder := businessCard.NewBusinessCardSite(site)
+	_, err := siteBuilder.ReturnSite()
+	if err == nil {
+		t.Errorf("Incorrect error handling!\nExpected:%s", testFail)
+	}
+	site = product.NewSite("Photogallery")
+	siteBuilder = photogallery.NewPhotogallerySite(site)
+	_, err = siteBuilder.ReturnSite()
+	if err == nil {
+		t.Errorf("Incorrect error handling!\nExpected:%s", testFail)
 	}
 }

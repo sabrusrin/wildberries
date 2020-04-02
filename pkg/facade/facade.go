@@ -12,7 +12,7 @@ type practice interface {
 	Solve(string) string
 }
 
-// Interface to work with trialPeriod type
+// Planner Interface to work with trialPeriod type
 type Planner interface {
 	Plan(string, string) string
 }

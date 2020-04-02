@@ -9,9 +9,9 @@ type siteInfo interface {
 
 // Interface to work with site, also a concreteBuilder
 type PhotogallerySite interface {
-	StartNewSite()
-	BuildSiteBody()
-	ReturnSite() string
+	StartNewSite() error
+	BuildSiteBody() error
+	ReturnSite() (string, error)
 }
 
 type site struct {
@@ -19,34 +19,45 @@ type site struct {
 }
 
 // StartNewSite asks for a site title and appends it to the site complex object
-func (s *site) StartNewSite() {
+func (s *site) StartNewSite() (err error) {
 	var buffer string
 	fmt.Print("Enter your site title: ")
-	fmt.Scan(&buffer)
-	s.siteInfo.Append("<!DOCTYPE html>\n<html>\n<head>\n<title>" + buffer + "</title>\n</head>\n")
+	if _, err = fmt.Scan(&buffer); err == nil {
+		s.siteInfo.Append("<!DOCTYPE html>\n<html>\n<head>\n<title>" + buffer + "</title>\n</head>\n")
+	}
+	return
 }
 
 // BuildSiteBody will ask for certain parameters and append them to the site complex object
-func (s *site) BuildSiteBody() {
+func (s *site) BuildSiteBody() (err error) {
 	var buffer string
 	var num int
 	fmt.Print("Enter photogallery name: ")
-	fmt.Scan(&buffer)
-	s.siteInfo.Append("<body bgcolor=\"87cefa\">\n<hr>\n<center>\n<h1>" + buffer + "</h1>\n<p>")
-	fmt.Print("How many photos you want to show: ")
-	fmt.Scan(&num)
-	for num != 0 {
-		fmt.Print("Enter path to your image: ")
-		fmt.Scan(&buffer)
-		s.siteInfo.Append("<img src=\"" + buffer + "\"align=\"bottom\">\n")
-		num--
+	if _, err = fmt.Scan(&buffer); err == nil {
+		s.siteInfo.Append("<body bgcolor=\"87cefa\">\n<hr>\n<center>\n<h1>" + buffer + "</h1>\n<p>")
+		fmt.Print("How many photos you want to show: ")
+		if _, err = fmt.Scan(&buffer); err == nil {
+			for num != 0 {
+				fmt.Print("Enter path to your image: ")
+				if _, err = fmt.Scan(&buffer); err == nil {
+					s.siteInfo.Append("<img src=\"" + buffer + "\"align=\"bottom\">\n")
+					num--
+				}
+			}
+		}
+		s.siteInfo.Append("</center>\n<hr>\n</body>\n</html>\n")
 	}
-	s.siteInfo.Append("</center>\n<hr>\n</body>\n</html>\n")
+	return
 }
 
 // ReturnSite returns a site product
-func (s *site) ReturnSite() string {
-	return s.siteInfo.Return()
+func (s *site) ReturnSite() (res string, err error) {
+	if res = s.siteInfo.Return(); len(res) == 0 {
+		err = fmt.Errorf("no site was created! check function call order")
+		return
+	}
+	err = nil
+	return
 }
 
 // NewPhotogallerySite ...

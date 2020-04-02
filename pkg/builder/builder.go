@@ -1,14 +1,14 @@
 package builder
 
 type siteBuilder interface {
-	StartNewSite()
-	BuildSiteBody()
-	ReturnSite() string
+	StartNewSite() error
+	BuildSiteBody() error
+	ReturnSite() (string, error)
 }
 
 // Director interface to work with builder
 type Director interface {
-	BuildSite() string
+	BuildSite() (string, error)
 }
 
 type director struct {
@@ -16,10 +16,13 @@ type director struct {
 }
 
 // BuildSite calls necessary commands to build a site
-func (d *director) BuildSite() string {
-	d.builder.StartNewSite()
-	d.builder.BuildSiteBody()
-	return d.builder.ReturnSite()
+func (d *director) BuildSite() (res string, err error) {
+	if err = d.builder.StartNewSite(); err == nil {
+		if err = d.builder.BuildSiteBody(); err == nil {
+			res, err = d.builder.ReturnSite()
+		}
+	}
+	return
 }
 
 // NewDirector ...
