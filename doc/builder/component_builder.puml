@@ -1,0 +1,30 @@
+@startuml
+
+package "Director" {
+interface siteBuilder
+[BuildSite]
+[director]
+}
+
+package "Builder" {
+siteBuilder -- [StartNewSite]
+siteBuilder -- [BuildSiteBody]
+siteBuilder -- [ReturnSite]
+}
+
+package "ConcreteBuilder" {
+interface Site
+[StartNewSite] -- Site
+[BuildSiteBody] -- Site
+[ReturnSite] -- Site
+interface siteInfo
+[site]
+}
+
+package "Product" {
+[sitePage]
+siteInfo -- [Append]
+siteInfo -- [Return]
+}
+
+@enduml
