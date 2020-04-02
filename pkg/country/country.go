@@ -10,7 +10,7 @@ type (
 
 // Country ...
 type Country interface {
-	Accept() []string
+	Accept() ([]string, error)
 }
 
 type country struct {
@@ -19,12 +19,16 @@ type country struct {
 }
 
 // Accept implements a visit to all cities in the .
-func (c *country) Accept() []string {
-	var result []string
+func (c *country) Accept() (res []string, err error) {
+	var tmp string
+	err = nil
 	for _, p := range c.cities {
-		result = append(result, p.Accept())
+		if tmp, err = p.Accept(); err != nil {
+			break
+		}
+		res = append(res, tmp)
 	}
-	return result
+	return
 }
 
 // NewCountry ...

@@ -6,15 +6,16 @@ import (
 
 // Visitor provides a visitor interface.
 type Visitor interface {
-	VisitCity(city.City) string
+	VisitCity(city.City) (string, error)
 }
 
 type people struct {
 }
 
 // VisitCity ...
-func (v *people) VisitCity(city city.City) string {
-	return city.SightsToSee()
+func (v *people) VisitCity(city city.City) (res string, err error) {
+	res, err = city.SightsToSee()
+	return
 }
 
 // NewVisitor ...

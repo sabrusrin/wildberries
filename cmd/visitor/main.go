@@ -20,6 +20,9 @@ func main() {
 	stPete := city.NewCity("St. Petersburg", piterSights, tourist)
 
 	russia := country.NewCountry("Russia", moscow, kazan, stPete)
-	sightsToSee := russia.Accept()
-	fmt.Printf("%v", sightsToSee)
+	if sightsToSee, err := russia.Accept(); err == nil {
+		fmt.Printf("%v", sightsToSee)
+	} else {
+		fmt.Println("An error occurred:", err)
+	}
 }

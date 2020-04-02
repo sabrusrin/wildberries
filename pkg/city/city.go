@@ -1,13 +1,15 @@
 package city
 
+import "fmt"
+
 type visitor interface {
-	VisitCity(City) string
+	VisitCity(City) (string, error)
 }
 
 // City ...
 type City interface {
-	Accept() string
-	SightsToSee() string
+	Accept() (string, error)
+	SightsToSee() (string, error)
 }
 
 type city struct {
@@ -16,13 +18,15 @@ type city struct {
 	visitor
 }
 
-func (c *city) Accept() string {
-	return c.visitor.VisitCity(c)
+func (c *city) Accept() (res string, err error) {
+	res, err = c.visitor.VisitCity(c)
+	return
 }
 
 // SightsToSee returns a list of sights to see in the city
-func (c *city) SightsToSee() string {
+func (c *city) SightsToSee() (res string, err error) {
 	var toSee string
+	err = nil
 	if len(c.sightsList) != 0 {
 		toSee = "In " + c.cityName + " you should check following sights: "
 		for i, sight := range c.sightsList {
@@ -33,9 +37,10 @@ func (c *city) SightsToSee() string {
 			}
 		}
 	} else {
-		toSee = "Error. Sight list for city " + c.cityName + " is Empty"
+		err = fmt.Errorf("error. Sight list for city %s is Empty", c.cityName)
 	}
-	return toSee
+	res = toSee
+	return
 }
 
 // NewCity ...
