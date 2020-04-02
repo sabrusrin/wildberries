@@ -1,30 +1,37 @@
 package practice
 
-// Practice ...
-type Practice interface {
-	Solve(string) string
+// TaskList ...
+type TaskList interface {
+	AppendTaskList(string) (string, error)
 }
 
-type practice struct {
-	task           string
+type taskList struct {
+	task           []string
 	practiceHeader string
 }
 
-// Appends the task list and returns the plan for practice
-func (p *practice) Solve(s string) string {
+// AppendTaskList Appends the task list and returns the plan for practice
+func (p *taskList) AppendTaskList(s string) (res string, err error) {
+	var iter int
+	var taskList, buffer string
 	if len(s) != 0 {
-		if len(p.task) == 0 {
-			p.task = p.task + " " + s
-		} else	{
-			p.task = p.task + ", " + s
+		p.task = append(p.task, s)
+	}
+	for iter, buffer = range p.task {
+		if iter == 0 {
+			taskList += " " + buffer
+		} else {
+			taskList += ", " + buffer
 		}
 	}
-	return p.practiceHeader + p.task + "\n"
+	res = p.practiceHeader + taskList + "\n"
+	err = nil
+	return
 }
 
-// NewPractice ...
-func NewPractice(s string) Practice {
-	return &practice{
+// NewTaskList ...
+func NewTaskList(s string) TaskList {
+	return &taskList{
 		practiceHeader: s,
 	}
 }

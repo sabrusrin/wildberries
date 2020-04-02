@@ -1,0 +1,15 @@
+@startuml
+actor User
+box main
+main -> NewTheoryList:TheoryList type init
+main -> NewMentor:Mentor type init
+main -> NewPracticeList:PracticeList type init
+end box
+box Facade
+main -> TrialPeriodPlanner:Plan
+TrialPeriodPlanner -> AppendReadList
+TrialPeriodPlanner -> Mentor
+TrialPeriodPlanner -> AppendTaskList
+end box
+
+@enduml

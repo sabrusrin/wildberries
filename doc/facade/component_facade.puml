@@ -1,0 +1,28 @@
+@startuml
+
+package "Client"{
+}
+
+package "TrialPeriodPlanner" {
+Client - TrialPeriodPlanner
+trialPeriod - [Plan]
+[trialPeriodPlan]
+}
+
+package "BookList" {
+bookList - [AppendBookList]
+
+[Plan] --> bookList
+}
+
+package "TaskList" {
+taskList - [AppendTaskList]
+[Plan] --> taskList
+}
+
+package "Mentor" {
+mentor - [Listen]
+[Plan] --> mentor
+}
+
+@enduml
