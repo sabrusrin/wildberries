@@ -1,0 +1,11 @@
+@startuml
+actor Client
+Client -> Country:accept()
+Country -> City:accept()
+activate City #FFBBBB
+City -> Visitor:VisitCity
+activate Visitor
+Visitor -> City:SightsToSee()
+activate City #DarkSalmon
+
+@enduml
