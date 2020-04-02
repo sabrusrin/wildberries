@@ -2,7 +2,7 @@ package theory
 
 // BookList ...
 type BookList interface {
-	AppendBookList(string) string
+	AppendBookList(string) (string, error)
 }
 
 type bookList struct {
@@ -11,7 +11,7 @@ type bookList struct {
 }
 
 // AppendBookList appends the book list and returns the plan for theory
-func (t *bookList) AppendBookList(s string) string {
+func (t *bookList) AppendBookList(s string) (res string, err error) {
 	var iter int
 	var bookList, buffer string
 	if len(s) != 0 {
@@ -24,7 +24,9 @@ func (t *bookList) AppendBookList(s string) string {
 			bookList += ", " + buffer
 		}
 	}
-	return t.theoryHeader + bookList + "\n"
+	res = t.theoryHeader + bookList + "\n"
+	err = nil
+	return
 }
 
 // NewBookList ...

@@ -19,13 +19,15 @@ func main() {
 	p := practice.NewTaskList(models.PracticeHeader)
 	wbTrial := facade.NewPlanner(t, m, p)
 	// Adding a new book and task to the trialPeriodPlan and comparing with expected Plan
-	out := wbTrial.Plan("Go101", "Implement facade pattern")
-	if in != out {
-		fmt.Printf("Expected: %s\nGot: %s\n", in, out)
-	} else {
-		fmt.Printf("%sYou are doing fine!\n", out)
+	if out, err := wbTrial.Plan("Go101", "Implement facade pattern"); err == nil {
+		if in != out {
+			fmt.Printf("Expected: %s\nGot: %s\n", in, out)
+		} else {
+			fmt.Printf("%sYou are doing fine!\n", out)
+		}
 	}
 	// Appending the task list with new books and tasks
-	out = wbTrial.Plan("Concurrency in go", "Implement builder pattern")
-	fmt.Printf("\n%s", out)
+	if out, err := wbTrial.Plan("Concurrency in go", "Implement builder pattern"); err == nil {
+		fmt.Printf("\n%s", out)
+	}
 }

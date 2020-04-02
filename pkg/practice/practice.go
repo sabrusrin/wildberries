@@ -2,7 +2,7 @@ package practice
 
 // TaskList ...
 type TaskList interface {
-	AppendTaskList(string) string
+	AppendTaskList(string) (string, error)
 }
 
 type taskList struct {
@@ -11,7 +11,7 @@ type taskList struct {
 }
 
 // AppendTaskList Appends the task list and returns the plan for practice
-func (p *taskList) AppendTaskList(s string) string {
+func (p *taskList) AppendTaskList(s string) (res string, err error) {
 	var iter int
 	var taskList, buffer string
 	if len(s) != 0 {
@@ -21,10 +21,12 @@ func (p *taskList) AppendTaskList(s string) string {
 		if iter == 0 {
 			taskList += " " + buffer
 		} else {
-			taskList += ", " +buffer
+			taskList += ", " + buffer
 		}
 	}
-	return p.practiceHeader + taskList + "\n"
+	res = p.practiceHeader + taskList + "\n"
+	err = nil
+	return
 }
 
 // NewTaskList ...
